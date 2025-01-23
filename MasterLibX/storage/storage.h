@@ -6,7 +6,7 @@
 /*   By: rcreuzea <rcreuzea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 20:00:32 by delta_0ne         #+#    #+#             */
-/*   Updated: 2025/01/23 13:14:09 by rcreuzea         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:37:59 by rcreuzea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 /* ------ MODULES ------- */
 // Locals :
-# include "storage_types.h"
+# include "storage_wrappers.h"
+
 // Globals :
 # include "memory.h"
 
@@ -32,17 +33,11 @@ static inline t_storage	*create_storage(void)
 			+ DEFAULT_MAX_WINDOW * sizeof(t_ptr))
 			!= no_error, unexpected))
 		return (NULL);
-	allocation = (t_buffer)storage;
-	*storage = __int__storage_wrapper(
-			track_wrapper(NULL, NULL),
-			__int__composer_wrapper(COMPOSER_SIZE,
-				(t_buffer)(allocation + sizeof(t_storage) + sizeof(t_track)
-					+ sizeof(t_composer))),
-			__int__manager_wrapper(MANAGER_SIZE,
-				(t_buffer)(allocation + sizeof(t_storage) + sizeof(t_track)
-					+ sizeof(t_composer) + COMPOSER_SIZE + sizeof(t_manager)))
-			);
-	return (_int_set0(storage->manager.buffer, storage->manager.size), storage);
+	// TODO : i think this segmentation isn't good thus it shall be verified.
+	allocation = (t_buffer)storage + sizeof(t_storage);
+	storage->table.list = (t_ptr)(allocation);
+	// TODO : everything should be set to the associated default values.
+	return (storage);
 }
 
 // comment ...

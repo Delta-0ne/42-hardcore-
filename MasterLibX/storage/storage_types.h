@@ -6,7 +6,7 @@
 /*   By: rcreuzea <rcreuzea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:03:51 by rcreuzea          #+#    #+#             */
-/*   Updated: 2025/01/23 13:12:30 by rcreuzea         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:24:57 by rcreuzea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define STORAGE_TYPES_H
 
 /* ------ MODULES ------- */
+// Locals :
+// TODO : In this exact case we should introduce the module API to access obscure definitions.
+# include "layout_types.h"
+
 // Globals :
 # include "standard_types.h"
 
