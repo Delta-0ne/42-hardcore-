@@ -6,7 +6,7 @@
 /*   By: rcreuzea <rcreuzea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:03:51 by rcreuzea          #+#    #+#             */
-/*   Updated: 2025/01/23 13:03:57 by rcreuzea         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:04:53 by rcreuzea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ typedef struct s_table
 {
 	t_s_size	size;
 	t_s_size	len;
-	t_id		*list;
+	void		*list;
 }	t_table;
 
 #endif
