@@ -6,7 +6,7 @@
 /*   By: rcreuzea <rcreuzea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:03:51 by rcreuzea          #+#    #+#             */
-/*   Updated: 2025/01/23 11:03:12 by rcreuzea         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:40:53 by rcreuzea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_config
 }	t_config;
 
 // TODO : Shall rename those as the parent isn't a parent bu simply a host on which
-// we add windows, thus child it just a window.
+// we add windows, thus child is just a window.
 
 // comment ...
 typedef struct s_parent_window

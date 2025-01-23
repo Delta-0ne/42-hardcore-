@@ -6,7 +6,7 @@
 /*   By: rcreuzea <rcreuzea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:03:51 by rcreuzea          #+#    #+#             */
-/*   Updated: 2025/01/22 15:08:28 by rcreuzea         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:03:57 by rcreuzea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef const char		*t_cstr;			// constant string content.
 typedef t_int8b			t_anymode;			// any mode.
 typedef t_int8b			t_s_size;			// small size.
 typedef t_int32b		t_l_size;			// large size.
+typedef t_uint8b		t_id;				// id of the windows (there shouldn't be much of them).
 // Structs :
 typedef struct s_axis	t_point;
 // Address :
@@ -133,5 +134,13 @@ typedef struct s_color_encoding
 	t_encoding	g;
 	t_encoding	b;
 }	t_color_encoding;
+
+// This table is limited to the window referencement inside the manager.
+typedef struct s_table
+{
+	t_s_size	size;
+	t_s_size	len;
+	t_id		*list;
+}	t_table;
 
 #endif
