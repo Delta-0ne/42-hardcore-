@@ -6,7 +6,7 @@
 /*   By: rcreuzea <rcreuzea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:03:51 by rcreuzea          #+#    #+#             */
-/*   Updated: 2025/01/23 10:25:31 by rcreuzea         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:32:29 by rcreuzea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,34 @@ __attribute__((hot)) t_parent_window	*get_root_window(void)
 				root->screen.map = DefaultColormap(root->server,
 					root->screen.id);
 		}
-		// TODO : shall obtain the rgb encoding.
+		get_color_encoding(&root->screen);
 	}
 	return (root);
+}
+
+__attribute__((hot)) t_child_window	*create_new_window(t_parent_window *root,
+													const t_axis dimensions,
+													t_cstr title)
+{
+	t_child_window			*window;
+	XSetWindowAttributes	config;
+	XGCValues				infos;
+
+	config = (XSetWindowAttributes){.background_pixel = 0, .border_pixel = none,
+			.colormap = root->screen.map, .event_mask = 0xFFFFFF};
+	// TODO : allocate via manager the window.
+	window->context.window = XCreateWindow(root->server, root->context.window,
+		0, 0, dimensions.x, dimensions.y, 0,
+		CopyFromParent, InputOutput, root->screen.visual,
+		CWEventMask | CWBackPixel | CWBorderPixel | CWColormap,
+		&config);
+	XStoreName(root->server, window->context.window, title);
+	infos = (XGCValues){.foreground = none, .function = GXcopy,
+		.plane_mask = AllPlanes};
+	window->context.graphical = XCreateGC(root->server, window->context.window,
+		GCFunction | GCPlaneMask | GCForeground, &infos);
+	XMapRaised(root->server, root->context.window);
+	return (window);
 }
 
 #endif
